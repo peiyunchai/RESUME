@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chai Pei Yun — Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2333;
+    --ink-soft:#4a5268;
+    --paper:#f1efe7;
+    --paper-raised:#faf9f5;
+    --amber:#c98a2c;
+    --teal:#3e7c78;
+    --line:#cdc9ba;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:880px; margin:0 auto; padding:0 28px;}
+
+  /* ---- Header / Hero ---- */
+  header.hero{
+    padding:88px 0 56px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--teal);
+    letter-spacing:0.02em;
+  }
+  .eyebrow::before{content:"# ";color:var(--line);}
+  h1.name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(40px, 7vw, 68px);
+    line-height:1.05;
+    margin:10px 0 18px;
+    letter-spacing:-0.01em;
+  }
+  .assign{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:15px;
+    color:var(--ink-soft);
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px 20px;
+    white-space:pre-wrap;
+    overflow-x:auto;
+  }
+  .assign .kw{color:var(--amber);}
+  .assign .str{color:var(--teal);}
+  .assign .fn{color:var(--ink);}
+
+  .contact-row{
+    display:flex; flex-wrap:wrap; gap:18px;
+    margin-top:22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+  }
+  .contact-row a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line);}
+  .contact-row a:hover{border-color:var(--amber); color:var(--amber);}
+
+  /* ---- Sections ---- */
+  section{padding:56px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .sec-head{
+    display:flex; align-items:baseline; gap:12px;
+    margin-bottom:30px;
+  }
+  .sec-num{font-family:'IBM Plex Mono', monospace; color:var(--line); font-size:14px;}
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:28px;
+    margin:0;
+  }
+  .sec-code{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+
+  /* ---- Education ---- */
+  .edu-item{
+    display:grid; grid-template-columns:1fr auto; gap:6px 16px;
+    padding:16px 0; border-top:1px solid var(--line);
+  }
+  .edu-item:first-of-type{border-top:none;}
+  .edu-school{font-weight:600; font-size:16px;}
+  .edu-detail{color:var(--ink-soft); font-size:14.5px; grid-column:1;}
+  .edu-score{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; color:var(--teal);
+    align-self:start; text-align:right;
+  }
+
+  /* ---- Experience (timeline) ---- */
+  .timeline{position:relative; padding-left:26px;}
+  .timeline::before{
+    content:""; position:absolute; left:5px; top:6px; bottom:6px;
+    width:1px; background:var(--line);
+  }
+  .t-item{position:relative; margin-bottom:34px;}
+  .t-item:last-child{margin-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:-26px; top:6px;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--amber);
+  }
+  .t-role{font-weight:600; font-size:16.5px;}
+  .t-org{color:var(--teal); font-size:14.5px; margin-bottom:2px;}
+  .t-date{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    color:var(--ink-soft); margin-bottom:8px; display:block;
+  }
+  .t-item ul{margin:8px 0 0; padding-left:18px; color:var(--ink-soft); font-size:14.5px;}
+  .t-item li{margin-bottom:5px;}
+
+  .subhead{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; color:var(--ink-soft);
+    margin:36px 0 16px;
+    text-transform:uppercase; letter-spacing:0.04em;
+  }
+
+  /* ---- Achievements ---- */
+  .achieve-grid{display:grid; gap:18px;}
+  .achieve-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:20px 22px;
+  }
+  .achieve-title{font-weight:600; font-size:16px; margin-bottom:6px;}
+  .achieve-title .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; color:var(--amber);
+    border:1px solid var(--amber);
+    border-radius:4px; padding:1px 6px;
+    margin-right:8px; vertical-align:middle;
+  }
+  .achieve-card p{margin:0; color:var(--ink-soft); font-size:14.5px;}
+  .achieve-title{display:flex; align-items:center; flex-wrap:wrap; gap:10px;}
+  .achieve-title-text{flex:1 1 auto;}
+  .cert-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--teal);
+    border:1px solid var(--teal);
+    border-radius:20px;
+    padding:4px 12px;
+    text-decoration:none;
+    white-space:nowrap;
+    display:inline-flex; align-items:center; gap:5px;
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .cert-btn::before{content:"↗"; font-size:11px;}
+  .cert-btn:hover{background:var(--teal); color:var(--paper-raised);}
+
+  /* ---- Skills as bars ---- */
+  .skill-group{margin-bottom:24px;}
+  .skill-group-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px;
+    color:var(--teal); margin-bottom:10px;
+  }
+  .skill-row{display:grid; grid-template-columns:150px 1fr 90px; align-items:center; gap:12px; margin-bottom:10px;}
+  .skill-name{font-size:14.5px;}
+  .skill-bar-bg{height:7px; background:var(--line); border-radius:4px; overflow:hidden;}
+  .skill-bar-fill{height:100%; background:var(--amber); border-radius:4px;}
+  .skill-level{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft); text-align:right;}
+
+  /* ---- Languages ---- */
+  .lang-row{display:flex; gap:28px; flex-wrap:wrap;}
+  .lang-chip{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px;
+    border:1px solid var(--line); border-radius:20px;
+    padding:8px 16px; background:var(--paper-raised);
+  }
+  .lang-chip b{color:var(--teal);}
+
+  footer{
+    padding:40px 0 60px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; color:var(--ink-soft);
+    text-align:center;
+  }
+  footer a {
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+  }
+  footer a:hover {
+    color:var(--amber);
+    border-color:var(--amber);
+  }
+
+  @media (max-width:600px){
+    .edu-item{grid-template-columns:1fr;}
+    .edu-score{text-align:left;}
+    .skill-row{grid-template-columns:110px 1fr 70px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">portfolio.R</div>
+    <h1 class="name">Chai Pei Yun</h1>
+    <div class="assign">peiyun <span class="kw">&lt;-</span> <span class="fn">statistician</span>(
+  focus   <span class="kw">=</span> <span class="str">"data, design &amp; people"</span>,
+  reading <span class="kw">=</span> <span class="str">"B.Sc. Statistics, University of Malaya"</span>,
+  cgpa    <span class="kw">=</span> 3.91
+)</div>
+    <div class="contact-row">
+      <!-- UPDATED TO DIRECT GMAIL COMPOSE LINK -->
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=peiyunchai@gmail.com" target="_blank" rel="noopener">peiyunchai@gmail.com</a>
+      <span>0182392308</span>
+    </div>
+  </header>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-head">
+      <span class="sec-num mono">01</span>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-item">
+      <div class="edu-school">University of Malaya</div>
+      <div class="edu-score">CGPA 3.91 / 4.00</div>
+      <div class="edu-detail">B.Sc. in Statistics</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-school">Penang Matriculation College</div>
+      <div class="edu-score">CGPA 4.00 / 4.00</div>
+      <div class="edu-detail">Pure Science Stream</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-school">SMK Seri Perling</div>
+      <div class="edu-score">8 A+, 1 A-</div>
+      <div class="edu-detail">Pure Science Stream</div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-head">
+      <span class="sec-num mono">02</span>
+      <h2>Experience</h2>
+    </div>
+
+    <div class="subhead">Extra-Curricular Experience</div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-role">Head of Publicity Department</div>
+        <div class="t-org">UM Mathematical Association (UMMA)</div>
+        <span class="t-date">Aug 2025 – Nov 2025</span>
+        <ul>
+          <li>Led the Publicity Department in executing promotional strategies and coordinating tasks among committee members.</li>
+          <li>Designed and managed publicity materials that increased student engagement.</li>
+          <li>Resolved an urgent photobooth budget constraint by negotiating directly with printing vendors.</li>
+        </ul>
+      </div>
+      <div class="t-item">
+        <div class="t-role">5th Floor Leader</div>
+        <div class="t-org">UM 12th Residential College, Raja Dr. Nazrin Shah Residential College</div>
+        <span class="t-date">Oct 2024 – Feb 2025</span>
+        <ul>
+          <li>Worked closely with college management and residents to address maintenance issues.</li>
+          <li>Coordinated with residents to maintain floor cleanliness and a comfortable living environment.</li>
+        </ul>
+      </div>
+      <div class="t-item">
+        <div class="t-role">Committee Member, Publicity Department</div>
+        <div class="t-org">Bursa Young Investor Club (BYIC)</div>
+        <span class="t-date">Nov 2024 – Feb 2025</span>
+        <ul>
+          <li>Supported promotion of investment events in collaboration with RHB, MooMoo and Wimag Consulting Group.</li>
+          <li>Engaged participants directly, providing event information and addressing enquiries.</li>
+        </ul>
+      </div>
+      <div class="t-item">
+        <div class="t-role">Committee Member, Publicity and Multimedia Department</div>
+        <div class="t-org">UMMA Mathematics Centre</div>
+        <span class="t-date">Nov 2024 – Feb 2025</span>
+        <ul>
+          <li>Assisted in managing the Math Centre's social media platforms and maintaining consistent event branding.</li>
+          <li>Created digital content and promotional materials in Canva to improve event visibility.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="subhead">Working Experience</div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-role">English / Malay / Mandarin Language Tutor</div>
+        <div class="t-org">Omelet Language Centre</div>
+        <span class="t-date">Apr 2023 – Jun 2023 · Jul 2024 – Sep 2024</span>
+        <ul>
+          <li>Taught pronunciation and language fundamentals to students aged 3–12, adapting methods across three languages.</li>
+        </ul>
+      </div>
+      <div class="t-item">
+        <div class="t-role">Tuition Teacher</div>
+        <div class="t-org">Pusat Tuisyen Sri Potensi</div>
+        <span class="t-date">Aug 2025</span>
+        <ul>
+          <li>Provided personalised Malay, English, Mandarin and Science support, adapting teaching methods to primary school learners.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="sec-head">
+      <span class="sec-num mono">03</span>
+      <h2>Participation &amp; Achievement</h2>
+    </div>
+    <div class="achieve-grid">
+      <div class="achieve-card">
+        <div class="achieve-title"><span class="achieve-title-text"><span class="tag">2026</span>ASEAN Data Science Explorers — Enablement Session</span><a class="cert-btn" href="e-Certificate%20ASEAN%20Data%20Science%20Explorers%202026%20Enablement%20Session%20CHAI%20PEI%20YUN.pdf" target="_blank" rel="noopener">Certificate</a></div>
+        <p>Completed the SAP Analytics Cloud training session under the ASEAN Data Science Explorers 2026 programme, organised by SAP and the ASEAN Foundation.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-title"><span class="achieve-title-text"><span class="tag">2026</span>APU AI Marathon — Autonomous Sales Engineer</span><a class="cert-btn" href="WhatsApp%20Image%202026-06-12%20at%2022.42.39.jpeg" target="_blank" rel="noopener">Certificate</a></div>
+        <p>Built an AI-powered sales assistant that navigates product catalogs to recommend compatible components with explanations, optimises cost and performance, suggests next-best purchases and upgrades, and generates quotations based on customer budgets.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-title"><span class="achieve-title-text"><span class="tag">Hackathon</span>UMACT Hackathon</span></div>
+        <p>Cleaned and preprocessed a 20,000-record medical claims dataset — handling missing values, correcting inconsistencies, and engineering features for actuarial modelling and cost analysis within one week.</p>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-title"><span class="achieve-title-text"><span class="tag">2025</span>BURSA Inter-varsity Stock Challenge (BISC)</span><a class="cert-btn" href="Chai%20Pei%20Yun%20bisc%20cert.pdf" target="_blank" rel="noopener">Certificate</a></div>
+        <p>Prepared investment research reports and executed virtual trades based on market analysis and investment decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-head">
+      <span class="sec-num mono">04</span>
+      <h2>Skills</h2>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-label">// programming &amp; analytics</div>
+      <div class="skill-row"><span class="skill-name">R</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:65%;"></div></div><span class="skill-level">Intermediate</span></div>
+      <div class="skill-row"><span class="skill-name">Python</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:32%;"></div></div><span class="skill-level">Beginner</span></div>
+      <div class="skill-row"><span class="skill-name">Power BI</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:32%;"></div></div><span class="skill-level">Beginner</span></div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-label">// business tools</div>
+      <div class="skill-row"><span class="skill-name">Excel &amp; Word</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:65%;"></div></div><span class="skill-level">Intermediate</span></div>
+      <div class="skill-row"><span class="skill-name">SAP</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:32%;"></div></div><span class="skill-level">Beginner</span></div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-label">// design &amp; visualisation</div>
+      <div class="skill-row"><span class="skill-name">Canva</span><div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%;"></div></div><span class="skill-level">Proficient</span></div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section id="languages">
+    <div class="sec-head">
+      <span class="sec-num mono">05</span>
+      <h2>Languages</h2>
+    </div>
+    <div class="lang-row">
+      <span class="lang-chip"><b>English</b> — Fluent, MUET 4.0</span>
+      <span class="lang-chip"><b>Malay</b> — Fluent</span>
+      <span class="lang-chip"><b>Chinese</b> — Native</span>
+    </div>
+  </section>
+
+  <footer>
+    <!-- UPDATED TO DIRECT GMAIL COMPOSE LINK -->
+    Chai Pei Yun · <a href="https://mail.google.com/mail/?view=cm&fs=1&to=peiyunchai@gmail.com" target="_blank" rel="noopener">peiyunchai@gmail.com</a> · 0182392308
+  </footer>
+</div>
+
+</body>
+</html>
